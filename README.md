@@ -1,6 +1,6 @@
 # docker-compose-example
 
-## Phase 1
+## Phase 1: Only YAML
 
 ```
 $ docker-compose up -d
@@ -20,7 +20,7 @@ $ PGPASSWORD=mysecretpassword psql -h 127.0.0.1 -p 5432 -U postgres -c "SELECT v
 $ docker-compose stop && docker-compose rm -f
 ```
 
-## Phase 2
+## Phase 2: YAML with data volume
 
 ```
 $ docker-compose up -d
@@ -42,8 +42,7 @@ fluentd_1  | 2017-04-22 09:46:50.000000000 +0000 docker.phase2_nginx_1: {"contai
 $ docker-compose stop && docker-compose rm -f
 ```
 
-
-## Phase 3
+## Phase 3: Dockerfile for each service
 
 ```
 $ docker-compose up -d
