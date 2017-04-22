@@ -1,12 +1,28 @@
 version: '3'
 services:
+  nginx:
+    image: nginx:1.11.13-alpine
+    ports:
+      - "80:80"
+    logging:
+      driver: fluentd
+      options:
+        fluentd-address: "127.0.0.1:24224"
+        tag: "docker.{{.Name}}"
+    depends_on:
+      - fluentd
   fluentd:
     build: ./fluentd
     ports:
-      - "8888:8888"
+      - "24224:24224"
     volumes:
       - ./fluentd/etc/fluent.conf:/fluentd/etc/fluent.conf
-  memcached:
-    image: memcached:1.4.31-alpine
+  mysql:
+    image: mysql:5.7.18
     ports:
+      - "3306:3306"
       - "11211:11211"
+    volumes:
+      - ./mysql/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
+    environment:
+      MYSQL_ROOT_PASSWORD: my-secret-pw
