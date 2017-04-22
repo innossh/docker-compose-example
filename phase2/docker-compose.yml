@@ -1,0 +1,21 @@
+version: '3'
+services:
+  fluentd:
+    image: fluent/fluentd:v0.14.14
+    ports:
+      - "24224:24224"
+    volumes:
+      - ./fluentd/etc/fluent.conf:/fluentd/etc/fluent.conf
+  nginx:
+    image: nginx:1.11.13-alpine
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/index.html:/usr/share/nginx/html/index.html
+    logging:
+      driver: fluentd
+      options:
+        fluentd-address: "127.0.0.1:24224"
+        tag: "docker.{{.Name}}"
+    depends_on:
+      - fluentd
