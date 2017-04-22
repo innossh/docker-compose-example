@@ -1,5 +1,7 @@
 # docker-compose-example
 
+An example of directory layout in Docker Compose
+
 ## Phase 1: Only YAML
 
 ```
