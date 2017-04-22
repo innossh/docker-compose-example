@@ -1,0 +1,15 @@
+version: '2'
+services:
+  mysql:
+    image: mysql:5.7.18
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: my-secret-pw
+  postgres:
+    image: postgres:9.6.2
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_PASSWORD: mysecretpassword
+
