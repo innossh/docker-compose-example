@@ -1,0 +1,12 @@
+version: '3'
+services:
+  fluentd:
+    build: ./fluentd
+    ports:
+      - "8888:8888"
+    volumes:
+      - ./fluentd/etc/fluent.conf:/fluentd/etc/fluent.conf
+  memcached:
+    image: memcached:1.4.31-alpine
+    ports:
+      - "11211:11211"
