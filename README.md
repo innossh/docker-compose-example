@@ -7,17 +7,17 @@ An example of directory layout in Docker Compose
 ```
 $ docker-compose up -d
 $ mysql -h 127.0.0.1 -P 3306 -u root -pmy-secret-pw -e "SELECT version();"
-  Warning: Using a password on the command line interface can be insecure.
-  +-----------+
-  | version() |
-  +-----------+
-  | 5.7.18    |
-  +-----------+
+Warning: Using a password on the command line interface can be insecure.
++-----------+
+| version() |
++-----------+
+| 5.7.18    |
++-----------+
 $ PGPASSWORD=mysecretpassword psql -h 127.0.0.1 -p 5432 -U postgres -c "SELECT version();"
-                                           version
-  ------------------------------------------------------------------------------------------
-   PostgreSQL 9.6.2 on x86_64-pc-linux-gnu, compiled by gcc (Debian 4.9.2-10) 4.9.2, 64-bit
-  (1 row)
+                                         version
+------------------------------------------------------------------------------------------
+ PostgreSQL 9.6.2 on x86_64-pc-linux-gnu, compiled by gcc (Debian 4.9.2-10) 4.9.2, 64-bit
+(1 row)
 
 $ docker-compose stop && docker-compose rm -f
 ```
